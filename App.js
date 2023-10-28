@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import {Button, Text, View } from 'react-native';
-import Profile from './components/Profile';
-
+import externalStyle from './styles/externalStyle';
 const App=()=>{
-    const [count, setCount] = useState(0)
     return(
-      <View 
-      style={{flex:1, alignItems:'center', justifyContent:'center',backgroundColor:'#FAF2BA'}}>
-        <Profile data="Abdul Kader" email="abdul@gmail.com"></Profile>
+      <View>
+        <Text style={[externalStyle.textStyle, externalStyle.textBg]}>Adding External Style</Text>
       </View>
     )
   
