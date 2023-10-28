@@ -1,38 +1,27 @@
-import React from 'react'
-import {Text, View } from 'react-native';
-import Form from './components/Form';
+import React, { useState } from 'react'
+import {Button, Text, View } from 'react-native';
 
-class App extends React.Component{
-  render(){
+const App=()=>{
+    const [count, setCount] = useState(0)
     return(
-      <View>
-        <Profile></Profile>
-        <About></About>
-        <Form></Form>
+      <View 
+      style={{flex:1, alignItems:'center', justifyContent:'center',backgroundColor:'#FAF2BA'}}>
+        <Text style={{fontSize:30}}>{count}</Text>
+        <View style={{flexDirection: 'row',}}>
+            <Button style={{fontSize:30,}} 
+                onPress={()=>setCount(count+1)}
+                title="Increase"
+                >
+            </Button>
+            <Button style={{fontSize:30}} 
+                onPress={()=>setCount(count-1)}
+                title="Decrease"
+                >
+            </Button>
+        </View>
       </View>
     )
-  }
+  
 }
 
 export default App;
-
-class Profile extends React.Component{
-  render(){
-    return (
-      <View>
-          <Text style={{fontSize:40}}>This is Profile Component</Text>
-      </View>
-  );
-  }
-}
-
-class About extends React.Component{
-  render(){
-
-      return (
-        <View>
-            <Text style={{fontSize:40}}>This is About Component</Text>
-        </View>
-  );
-  }
-}
