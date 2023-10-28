@@ -1,37 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { Button, FlatList, Modal, Text, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react'
+import { Button, FlatList, Modal, Text, TextInput, View } from 'react-native';
 const App = () => {
-  const userData = [
-    { name: 'anil', email: 'anil@gmail.com' },
-    { name: 'rafi', email: 'rafi@gmail.com' },
-    { name: 'hasan', email: 'hasan@gmail.com' },
-    { name: 'john', email: 'john@gmail.com' },
-    { name: 'alice', email: 'alice@gmail.com' },
-    { name: 'emma', email: 'emma@gmail.com' },
-    { name: 'david', email: 'david@gmail.com' },
-    { name: 'linda', email: 'linda@gmail.com' },
-    { name: 'michael', email: 'michael@gmail.com' },
-    { name: 'olivia', email: 'olivia@gmail.com' },
-    { name: 'sara', email: 'sara@gmail.com' },
-    { name: 'peter', email: 'peter@gmail.com' },
-    { name: 'jennifer', email: 'jennifer@gmail.com' },
-    { name: 'kevin', email: 'kevin@gmail.com' },
-    { name: 'natalie', email: 'natalie@gmail.com' }
-  ];
-  const [user, setUser] = useState(userData)
+  const input = useRef(null)
 
+  const updateInput = () => {
+    if (input.current) {
+      input.current.focus();
+      input.current.setNativeProps({
+        style: {
+          color: 'red'
+        }
+      })
+    }
 
+  }
   return (
     <View style={{ flex: 1, paddingTop: 50 }}>
-      <Text style={{ fontSize: 30 }}>Api Call</Text>
-      <FlatList
-        data={user}
-        renderItem={({ item }) =>
-          <Text style={{ fontSize: 30, backgroundColor: 'gray', color: 'white', margin: 20 }}>{item.name}, {item.email}</Text>
-        }
-      >
-
-      </FlatList>
+      <View style={{ marginBottom: 5 }}>
+        <TextInput ref={input} style={{ fontSize: 20, padding: 5, borderWidth: 1, borderColor: 'lightblue' }} placeholder='Enter Name'></TextInput>
+        <TextInput style={{ fontSize: 20, padding: 5, borderWidth: 1, borderColor: 'lightblue' }} placeholder='Enter Password'></TextInput>
+      </View>
+      <Button title='Update State' onPress={updateInput}></Button>
     </View >
   )
 
