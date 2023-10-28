@@ -1,22 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Modal, Text, View } from 'react-native';
-const App = () => {
-  const [count, setCount] = useState(0)
-  const [data, setData] = useState("Initial Data")
-
-  useEffect(() => {
-    console.warn("value of count", count)
-    if (count === 5) {
-      setData("Updated Data")
+import { Button, FlatList, Modal, Text, View } from 'react-native';
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      data: []
     }
-  }, [count])
-  return (
-    <View style={{ flex: 1, paddingTop: 50 }}>
-      <Text style={{ fontSize: 30 }}>Value of Count {count}</Text>
-      <Text style={{ fontSize: 30 }}>{data}</Text>
-      <Button title="Set Count" onPress={() => setCount(count + 1)}></Button>
-    </View >
-  )
+
+  }
+  componentDidMount() {
+    this.apiCall();
+  }
+  async apiCall() {
+    let res = await fetch('https://facebook.github.io/react-native/movies.json')
+    let data = await res.json()
+    // console.warn(data)
+    this.setState({ data: data.movies })
+
+  }
+  render() {
+    return (
+      <View style={{ flex: 1, paddingTop: 50 }}>
+        <Text style={{ fontSize: 30 }}>Api Call</Text>
+        <FlatList
+          data={this.state.data}
+          renderItem={({ item }) =>
+            <Text style={{ fontSize: 30, backgroundColor: 'yellow', margin: 20 }}>{item.title}, {item.releaseYear}</Text>
+          }
+        >
+
+        </FlatList>
+      </View >
+    )
+  }
+
+
 
 }
 
