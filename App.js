@@ -1,43 +1,31 @@
 import React, { useState } from 'react'
-import {Button, Text, View } from 'react-native';
+import { Button, Modal, Text, View } from 'react-native';
 import externalStyle from './styles/externalStyle';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
-const App=()=>{
-  const [clickedIcon, setClickedIcon] = useState("")
-    return(
-      <View style={{paddingTop:50}}>
-        <Text style={[externalStyle.textStyle, externalStyle.textBg]}>External Style with icon</Text>
-
-        <Icon.Button
-              name="facebook"
-              size={28}
-              style={{justifyContent:"center"}}
-              onPress={()=>setClickedIcon("Cliked on facebook icon")}
-          />
-          <Icon.Button
-              name="github"
-              size={28}
-              style={{justifyContent:"center"}}
-              backgroundColor="black"
-              onPress={()=>setClickedIcon("Cliked on githun icon")}
-
-          />
-          <Icon.Button
-              name="linkedin"
-              size={28}
-              style={{justifyContent:"center"}}
-              backgroundColor="blue"
-              onPress={()=>setClickedIcon("Cliked on linkedin icon")}
-
-          />
-          <Text style={{backgroundColor:"#FDEC85", padding:10,marginTop:50, fontSize:20}}>{clickedIcon}</Text>
-         
-          
-          
+const App = () => {
+  const [isVisiable, setIsVisiable] = useState(false)
+  return (
+    <View style={{ paddingTop: 50 }}>
+      <Text style={{ fontSize: 80 }}>Normal Screen Text</Text>
+      <View style={{ marginTop: 50 }}>
+        <Button title="Show Modal" onPress={() => setIsVisiable(true)}></Button>
       </View>
-    )
-  
+      <Modal transparent={true}
+        visible={isVisiable}
+      >
+        <View style={{ backgroundColor: '#000000aa', flex: 1 }}>
+          <View style={{ backgroundColor: '#ffffff', margin: 30, padding: 50, borderRadius: 10, flex: 1 }}>
+            <Text style={{ fontSize: 20, color: 'black' }}>Modal Screen Text</Text>
+            <View style={{ marginTop: 500 }}>
+              <Button title="close Modal" onPress={() => setIsVisiable(false)}></Button>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+    </View >
+  )
+
 }
 
 export default App;
