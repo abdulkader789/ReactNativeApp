@@ -1,15 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Profile from './components/Profile';
-import About from './components/About';
+import React from 'react'
+import {Text, View } from 'react-native';
+import Form from './components/Form';
 
-export default function App() {
-  return (
-    <View style={{flex:1, margin:40}}>
-      <Text style={{fontSize:30}}>This is App component</Text> 
-      <Profile></Profile>
-      <About></About>
+class App extends React.Component{
+  render(){
+    return(
+      <View>
+        <Profile></Profile>
+        <About></About>
+        <Form></Form>
+      </View>
+    )
+  }
+}
 
-    </View>
+export default App;
+
+class Profile extends React.Component{
+  render(){
+    return (
+      <View>
+          <Text style={{fontSize:40}}>This is Profile Component</Text>
+      </View>
   );
+  }
+}
+
+class About extends React.Component{
+  render(){
+
+      return (
+        <View>
+            <Text style={{fontSize:40}}>This is About Component</Text>
+        </View>
+  );
+  }
 }
