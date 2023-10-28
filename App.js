@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Button, Text, View } from 'react-native';
 import externalStyle from './styles/externalStyle';
+
 const App=()=>{
     return(
       <View>
